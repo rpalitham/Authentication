@@ -3,12 +3,10 @@ const EventEmitter = require('events')
 
 global.connectedEmitter = new EventEmitter()
 
-mongoose.connect(
+global.db = mongoose.createConnection(
    "mongodb+srv://admin:admin@lazycluster0-pw9lh.mongodb.net/test?retryWrites=true&w=majority",
    {useNewUrlParser: true}
  );
-
-global.db = mongoose.connection
 db.on('connected', () => {
   console.log('DB CONNECTED');
   connectedEmitter.emit('dbConnected')
